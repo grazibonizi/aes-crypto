@@ -13,9 +13,9 @@ public class main {
 			String decryptedMessage = cryptoService.decrypt(encryptedMessage);
 			
 			if (message.equalsIgnoreCase(decryptedMessage)) {
-				System.out.print("sucesso");
+				System.out.print("sucess");
 			} else {
-				System.out.print("erro");
+				System.out.print("fail");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
