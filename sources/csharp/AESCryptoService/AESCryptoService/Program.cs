@@ -14,7 +14,9 @@ namespace AESCryptoService
                 ICryptoService cryptoService = new AESCryptoService();
                 var message = "Teste '1234567890-=\"!@#$%¨&*()_+´[~];/,.`{^}:?<>";
                 var encryptedMessage = cryptoService.Encrypt(message);
+                Console.WriteLine(string.Format("Mensagem encriptada: {0}", encryptedMessage));
                 var decryptedMessage = cryptoService.Decrypt(encryptedMessage);
+                Console.WriteLine(string.Format("Mensagem decriptada: {0}", decryptedMessage));
                 if (message.Equals(decryptedMessage))
                     Console.WriteLine("Sucess");
                 else
