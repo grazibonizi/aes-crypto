@@ -69,6 +69,7 @@ namespace AESCryptoService
                     AES.Key = key.GetBytes(AES.KeySize / 8);
                     AES.IV = key.GetBytes(ivLenght);
                     AES.Mode = mode;
+                    AES.Padding = PaddingMode.Zeros;
 
                     using (var cs = new CryptoStream(ms, AES.CreateEncryptor(), CryptoStreamMode.Write))
                     {
@@ -109,6 +110,7 @@ namespace AESCryptoService
                     AES.Key = key.GetBytes(AES.KeySize / 8);
                     AES.IV = iv;
                     AES.Mode = mode;
+                    AES.Padding = PaddingMode.Zeros;
 
                     using (var cs = new CryptoStream(ms, AES.CreateDecryptor(), CryptoStreamMode.Write))
                     {
@@ -129,7 +131,7 @@ namespace AESCryptoService
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
             byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(strToBeEncrypted);
             byte[] encryptedBytes = Encrypt(bytesToBeEncrypted);
-            return Convert.ToBase64String(encryptedBytes);
+            return Convert.ToBase64String(encryptedBytes).Trim();
         }
 
         public string Decrypt(string strToBeDecrypted)
@@ -137,7 +139,7 @@ namespace AESCryptoService
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
             byte[] bytesToBeDecrypted = Convert.FromBase64String(strToBeDecrypted);
             byte[] decryptedBytes = Decrypt(bytesToBeDecrypted);
-            return Encoding.UTF8.GetString(decryptedBytes);
+            return Encoding.UTF8.GetString(decryptedBytes).Trim();
         }
         #endregion
     }

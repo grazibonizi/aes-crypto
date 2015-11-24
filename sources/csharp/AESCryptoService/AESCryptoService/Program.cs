@@ -15,12 +15,19 @@ namespace AESCryptoService
                 var message = "Teste '1234567890-=\"!@#$%¨&*()_+´[~];/,.`{^}:?<>";
                 var encryptedMessage = cryptoService.Encrypt(message);
                 Console.WriteLine(string.Format("Mensagem encriptada: {0}", encryptedMessage));
+
                 var decryptedMessage = cryptoService.Decrypt(encryptedMessage);
                 Console.WriteLine(string.Format("Mensagem decriptada: {0}", decryptedMessage));
+                
                 if (message.Equals(decryptedMessage))
                     Console.WriteLine("Sucess");
                 else
                     Console.WriteLine("Fail");
+
+                //Teste de integração
+                string enc = Console.ReadLine();
+                string dec = cryptoService.Decrypt(enc);
+                Console.WriteLine(dec);
             }
             catch (Exception ex)
             {
