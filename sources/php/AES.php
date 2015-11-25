@@ -80,10 +80,6 @@ class AES {
 		$key = $this->pbkdf2($this->password, $salt, $this->interactions, $this->keySize);
 		$encrypted = mcrypt_encrypt($this->cipher, $key, $data, $this->mode, $iv);
 		$encoded = base64_encode($iv . $encrypted . $salt);
-		
-		echo "Salt: ".$salt."<br/>";
-		echo "IV: ".$iv."<br/>";
-		echo "Key: ".$key."<br/>";
         
 		return trim($encoded);
     }
@@ -102,10 +98,6 @@ class AES {
 		$key = $this->pbkdf2($this->password, $salt, $this->interactions, $this->keySize);		
 		
 		$decryted = mcrypt_decrypt($this->cipher, $key, $message, $this->mode, $iv);
-		
-		echo "Salt: ".$salt."<br/>";
-		echo "IV: ".$iv."<br/>";
-		echo "Key: ".$key."<br/>";
 		
 		return trim($decryted);
     }
